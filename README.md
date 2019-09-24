@@ -1,6 +1,6 @@
-# Project name
+# SynesthesiAR
 ## Project Information
-(Brief summary here)
+A synesthesia simulator / music vizualizer for the hololens
 
 ## External Assets
 
