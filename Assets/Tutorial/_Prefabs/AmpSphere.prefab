@@ -437,9 +437,11 @@ MonoBehaviour:
   startScale: 1
   scaleMultiplier: 1
   useBuffer: 1
-  red: 122
-  green: 158
-  blue: 255
+  red: 0.517
+  green: 0.761
+  blue: 1
+  UseColor: 1
+  color: 0
 --- !u!1 &2637740236548796688
 GameObject:
   m_ObjectHideFlags: 0
