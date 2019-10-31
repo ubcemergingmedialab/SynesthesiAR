@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ParaCube : MonoBehaviour
 {
+    public AudioProcessor process;
+
     public int band;
     public float startScale, scaleMultiplier;
     public bool useBuffer;
@@ -19,7 +21,7 @@ public class ParaCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float value = useBuffer ? AudioProcessor.audioBandBuffer[band] : AudioProcessor.audioBand[band];
+        float value = useBuffer ? process.audioBandBuffer[band] : process.audioBand[band];
         transform.localScale = new Vector3(transform.localScale.x, (value * scaleMultiplier) + startScale, transform.localScale.z);
         Color color = new Color(value, value, value);
         mat.SetColor("_EmissionColor", color);

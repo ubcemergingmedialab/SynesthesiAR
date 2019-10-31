@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent (typeof (Light))]
 public class LightOnAudio : MonoBehaviour
 {
+
+    public AudioProcessor process;
     private Light l;
 
     public int band;
@@ -20,6 +22,6 @@ public class LightOnAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        l.intensity = (AudioProcessor.audioBand[band] * (maxIntensity - minIntensity)) + minIntensity;
+        l.intensity = (process.audioBand[band] * (maxIntensity - minIntensity)) + minIntensity;
     }
 }

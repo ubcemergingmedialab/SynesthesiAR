@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: New Unity Project
+  companyName: EMLx
+  productName: SynesthesiAR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -542,16 +542,16 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template3D
-  metroPackageVersion: 1.0.0.0
-  metroCertificatePath: D:\EMLx\Abel\SynesthesiAR\Assets\WSATestCertificate.pfx
+  metroPackageName: SynesthesiAR
+  metroPackageVersion: 1.0.1.0
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: DefaultCompany
-  metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 008d86a6019ed601
+  metroCertificateSubject: EMLx
+  metroCertificateIssuer: EMLx
+  metroCertificateNotAfter: 80982213769fd601
   metroApplicationDescription: Template_3D
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: SynesthesiAR
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
