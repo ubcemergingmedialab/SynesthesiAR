@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// For the "AmpSphere" prefab - sets all paracube objects in the children to use the same Audio Processor as the parent sphere
+/// </summary>
 public class SetAudioProcessor : EditorWindow
 {
     [MenuItem("CONTEXT/ScaleOnAmplitude/SetChildren")]
