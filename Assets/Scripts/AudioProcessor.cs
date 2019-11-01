@@ -7,16 +7,16 @@ using UnityEngine;
 public class AudioProcessor : MonoBehaviour
 {
     AudioSource source;
-    public static float[] samples = new float[512];
-    public static float[] freqBands = new float[8];
-    public static float[] bandBuffer = new float[8];
+    public float[] samples = new float[512];
+    public float[] freqBands = new float[8];
+    public float[] bandBuffer = new float[8];
     float[] bufferDecrease = new float[8];
 
     float[] _freqBandHighest = new float[8];
-    public static float[] audioBand = new float[8];
-    public static float[] audioBandBuffer = new float[8];
+    public float[] audioBand = new float[8];
+    public float[] audioBandBuffer = new float[8];
 
-    public static float amplitude, amplitudeBuffer;
+    public float amplitude, amplitudeBuffer;
 
     private float amplitudeHighest = 0;
 

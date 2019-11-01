@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InstantiateCubes : MonoBehaviour
 {
+    public AudioProcessor process;
 
     public GameObject cubePrefab;
     static int length = 512;
@@ -33,7 +34,7 @@ public class InstantiateCubes : MonoBehaviour
         {
             if(sampleCubes != null)
             {
-                sampleCubes[i].transform.localScale = new Vector3(.1f, (AudioProcessor.samples[i] * maxScale) + .1f, .1f);
+                sampleCubes[i].transform.localScale = new Vector3(.1f, (process.samples[i] * maxScale) + .1f, .1f);
             }
         }
     }

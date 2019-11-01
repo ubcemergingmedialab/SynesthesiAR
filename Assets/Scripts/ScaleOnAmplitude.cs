@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScaleOnAmplitude : MonoBehaviour
 {
+    public AudioProcessor process;
+
     public float startScale, scaleMultiplier;
     public bool useBuffer;
     [Range(0, 1)]
@@ -24,7 +26,7 @@ public class ScaleOnAmplitude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float value = useBuffer ? AudioProcessor.amplitudeBuffer : AudioProcessor.amplitude;
+        float value = useBuffer ? process.amplitudeBuffer : process.amplitude;
         transform.localScale = new Vector3((value * scaleMultiplier) + startScale, (value * scaleMultiplier) + startScale, (value * scaleMultiplier) + startScale);
         if (UseColor)
         {
@@ -47,4 +49,7 @@ public class ScaleOnAmplitude : MonoBehaviour
             mat.color = c;
         }
     }
+
+
+
 }
