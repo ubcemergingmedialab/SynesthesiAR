@@ -18,7 +18,7 @@ public class AudioProcessor : MonoBehaviour
 
     public float amplitude, amplitudeBuffer;
 
-    private float amplitudeHighest = 0;
+    private float amplitudeHighest = 0.1f;
 
     // Start is called before the first frame update
     void Start()
