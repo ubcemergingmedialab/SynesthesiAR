@@ -24,7 +24,10 @@ public class AudioProcessor : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        
+        for (int i = 0; i < 8; i++)
+        {
+            _freqBandHighest[i] = 0.1f;
+        }
     }
 
     // Update is called once per frame
