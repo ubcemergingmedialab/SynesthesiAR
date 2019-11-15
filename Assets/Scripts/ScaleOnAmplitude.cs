@@ -27,6 +27,7 @@ public class ScaleOnAmplitude : MonoBehaviour
     void Update()
     {
         float value = useBuffer ? process.amplitudeBuffer : process.amplitude;
+        //Debug.Log(value);
         transform.localScale = new Vector3((value * scaleMultiplier) + startScale, (value * scaleMultiplier) + startScale, (value * scaleMultiplier) + startScale);
         if (UseColor)
         {
