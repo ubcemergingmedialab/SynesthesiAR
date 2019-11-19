@@ -13,11 +13,14 @@ public class ParticleAudio : MonoBehaviour
 
     [SerializeField]
     private bool allAtOnce = false;
+    [SerializeField]
+    private bool massiveBurst = false;
 
     private ParticleSystem particles;
     private ParticleSystem.MainModule main;
     private ParticleSystem.EmissionModule em;
     private ParticleSystem.EmitParams emitParams;
+    ParticleSystem.Particle[] particlesBuffer;
 
     private void Start()
     {
@@ -28,14 +31,23 @@ public class ParticleAudio : MonoBehaviour
         main.loop = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {     
         if (allAtOnce)
         {
             if (process.amplitudeBuffer > 0.2f)
             {
-                int numParticles = (int)(maxParticlesOrEmissionSpeedMultiplier * process.amplitudeBuffer);
-                particles.Emit(emitParams, numParticles);
+                if (massiveBurst)
+                {
+                    int numParticles = (int)(maxParticlesOrEmissionSpeedMultiplier * process.amplitudeBuffer);
+                    particles.Emit(emitParams, numParticles);
+                }
+                else
+                {
+                    particles.Emit(emitParams, 8);
+
+                    //Todo: write particles to buffer here, and have a coroutine where they change based on the band arrays
+                }
             }
         }
         else
