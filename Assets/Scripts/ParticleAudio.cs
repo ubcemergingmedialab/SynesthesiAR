@@ -6,7 +6,7 @@ using UnityEngine;
 public class ParticleAudio : MonoBehaviour
 {
     [SerializeField]
-    private AudioProcessor process = default;
+    private AudioSpectrum process = default;
 
     [SerializeField, Tooltip("Max value of particles, if all at once is checked. If amplitude buffer = 1, this will be emitted. Otherwise, multiplier for emission speed")]
     private int maxParticlesOrEmissionSpeedMultiplier = default;
@@ -35,11 +35,11 @@ public class ParticleAudio : MonoBehaviour
     {     
         if (allAtOnce)
         {
-            if (process.amplitudeBuffer > 0.2f)
+            if (process.Amplitude > 0.2f)
             {
                 if (massiveBurst)
                 {
-                    int numParticles = (int)(maxParticlesOrEmissionSpeedMultiplier * process.amplitudeBuffer);
+                    int numParticles = (int)(maxParticlesOrEmissionSpeedMultiplier * process.Amplitude);
                     particles.Emit(emitParams, numParticles);
                 }
                 else
@@ -52,7 +52,7 @@ public class ParticleAudio : MonoBehaviour
         }
         else
         {
-            em.rateOverTime = process.amplitudeBuffer * maxParticlesOrEmissionSpeedMultiplier;
+            em.rateOverTime = process.Amplitude * maxParticlesOrEmissionSpeedMultiplier;
         }
     }
 
