@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 /// <summary>
@@ -18,7 +19,12 @@ public class SetAudioProcessor : EditorWindow
 
         foreach(ParaCube p in children)
         {
+            Undo.RecordObject(p, "Paracube");
             p.process = body.process;
+            
+            PrefabUtility.RecordPrefabInstancePropertyModifications(p.process);
         }
+        PrefabUtility.RecordPrefabInstancePropertyModifications(t);
+
     }
 }

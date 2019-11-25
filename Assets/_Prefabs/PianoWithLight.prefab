@@ -4781,9 +4781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c594b93ee77056944b7f592d9b496ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  process: {fileID: 6159893525731721018}
+  process: {fileID: 5934604796204763263}
   maxParticlesOrEmissionSpeedMultiplier: 10
   allAtOnce: 0
+  massiveBurst: 0
 --- !u!1001 &2092438821781523788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4794,7 +4795,7 @@ PrefabInstance:
     - target: {fileID: 4966891343370481819, guid: 2c2952f2f33418146838ddcd5c5d9346,
         type: 3}
       propertyPath: m_Name
-      value: Front
+      value: PianoWithLight
       objectReference: {fileID: 0}
     - target: {fileID: 4964944290050112371, guid: 2c2952f2f33418146838ddcd5c5d9346,
         type: 3}
@@ -4851,6 +4852,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6022434168864616693, guid: 2c2952f2f33418146838ddcd5c5d9346,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2952f2f33418146838ddcd5c5d9346, type: 3}
 --- !u!4 &6480346176713143871 stripped
@@ -4859,15 +4865,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2092438821781523788}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6159893525731721018 stripped
+--- !u!114 &5934604796204763263 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5221220646388888182, guid: 2c2952f2f33418146838ddcd5c5d9346,
+  m_CorrespondingSourceObject: {fileID: 5715672225384432947, guid: 2c2952f2f33418146838ddcd5c5d9346,
     type: 3}
   m_PrefabInstance: {fileID: 2092438821781523788}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12734a8f3e2021e469161779b928c781, type: 3}
+  m_Script: {fileID: 11500000, guid: 0258fac6d6ba309469350eff78b6177a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

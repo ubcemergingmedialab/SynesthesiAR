@@ -37,7 +37,7 @@ public class AudioSpectrum : MonoBehaviour
 
     #region Public variables
     public int numberOfSamples = 1024;
-    public BandType bandType = BandType.TenBand;
+    public BandType bandType = BandType.EightBand;
     public float fallSpeed = 0.08f;
     public float sensibility = 8.0f;
     #endregion
@@ -47,8 +47,10 @@ public class AudioSpectrum : MonoBehaviour
     float[] levels;
     float[] peakLevels;
     float[] meanLevels;
+    float[] maxLevels;
     AudioSource source;
     private float amplitudeHighest = 0.01f;
+    private float fMax;
     #endregion
 
     #region Public property
@@ -72,12 +74,18 @@ public class AudioSpectrum : MonoBehaviour
     {
         if (rawSpectrum == null || rawSpectrum.Length != numberOfSamples) {
             rawSpectrum = new float[numberOfSamples];
+            fMax = AudioSettings.outputSampleRate / 2;
         }
         var bandCount = middleFrequenciesForBands [(int)bandType].Length;
         if (levels == null || levels.Length != bandCount) {
             levels = new float[bandCount];
             peakLevels = new float[bandCount];
             meanLevels = new float[bandCount];
+            maxLevels = new float[bandCount];
+            for(int i  = 0; i < bandCount; i++)
+            {
+                maxLevels[i] = 0.01f;
+            }
         }
     }
 
@@ -103,6 +111,24 @@ public class AudioSpectrum : MonoBehaviour
     }
     #endregion
 
+    #region Public functions
+    public float BandVol(float fLow, float fHigh)
+    {
+        fLow = Mathf.Clamp(fLow, 20, fMax);
+        fHigh = Mathf.Clamp(fHigh, fLow, fMax);
+
+        int imin = FrequencyToSpectrumIndex(fLow);
+        int imax = FrequencyToSpectrumIndex(fHigh);
+
+        var bandAcc = 0.0f;
+        for (var fi = imin; fi <= imax; fi++)
+        {
+            bandAcc += rawSpectrum[fi];
+        }
+        return bandAcc / (imax - imin +1);
+    }
+    #endregion //PUBLIC_METHODS
+
     #region Monobehaviour functions
     void Awake ()
     {
@@ -126,15 +152,22 @@ public class AudioSpectrum : MonoBehaviour
             int imin = FrequencyToSpectrumIndex (middlefrequencies [bi] / bandwidth);
             int imax = FrequencyToSpectrumIndex (middlefrequencies [bi] * bandwidth);
 
-            var bandMax = 0.0f;
+            var bandAcc = 0.0f;
             for (var fi = imin; fi <= imax; fi++) {
-                bandMax = Mathf.Max (bandMax, rawSpectrum [fi]);
+                bandAcc += rawSpectrum [fi];
             }
 
-            levels [bi] = bandMax;
-            peakLevels [bi] = Mathf.Max (peakLevels [bi] - falldown, bandMax);
-            meanLevels [bi] = bandMax - (bandMax - meanLevels [bi]) * filter;
+            maxLevels[bi] = Mathf.Max(maxLevels[bi], bandAcc);
+            if(maxLevels[bi] == 0)
+            {
+                Debug.Log("Ya done fucked up");
+            }
+            levels [bi] = bandAcc / maxLevels[bi];
+            peakLevels [bi] = Mathf.Max (peakLevels [bi] - falldown, levels[bi]);
+            meanLevels[bi] = bandAcc - (levels[bi] - meanLevels[bi]) * filter;
         }
+        GetAmplitude();
+
     }
     #endregion
 }

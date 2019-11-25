@@ -30,6 +30,9 @@ public class AudioSpectrumInspector : Editor
 
     #region Temporary state variables
     AnimationCurve curve;
+
+    SerializedProperty fallSpeed;
+    SerializedProperty bandType;
     #endregion
 
     #region Private functions
@@ -49,8 +52,15 @@ public class AudioSpectrumInspector : Editor
     #endregion
 
     #region Editor callbacks
+    private void OnEnable()
+    {
+        bandType = serializedObject.FindProperty("bandType");
+        fallSpeed = serializedObject.FindProperty("fallSpeed");
+    }
+
     public override void OnInspectorGUI ()
     {
+        serializedObject.Update();
         var spectrum = target as AudioSpectrum;
 
         // Update the curve only when it's playing.
@@ -63,7 +73,7 @@ public class AudioSpectrumInspector : Editor
         // Component properties.
         spectrum.numberOfSamples = EditorGUILayout.IntPopup ("Number of samples", spectrum.numberOfSamples, sampleOptionStrings, sampleOptions);
         spectrum.bandType = (AudioSpectrum.BandType)EditorGUILayout.IntPopup ("Band type", (int)spectrum.bandType, bandOptionStrings, bandOptions);
-        spectrum.fallSpeed = EditorGUILayout.Slider ("Fall speed", spectrum.fallSpeed, 0.01f, 0.5f);
+        EditorGUILayout.Slider (fallSpeed, 0.01f, 0.5f);
         spectrum.sensibility = EditorGUILayout.Slider ("Sensibility", spectrum.sensibility, 1.0f, 20.0f);
 
         // Shows the spectrum curve.
@@ -73,6 +83,8 @@ public class AudioSpectrumInspector : Editor
         if (EditorApplication.isPlaying) {
             EditorUtility.SetDirty (target);
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
     #endregion
 }
