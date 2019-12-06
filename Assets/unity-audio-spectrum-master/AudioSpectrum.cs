@@ -40,6 +40,19 @@ public class AudioSpectrum : MonoBehaviour
     public BandType bandType = BandType.EightBand;
     public float fallSpeed = 0.08f;
     public float sensibility = 8.0f;
+
+    public int C4;
+    public int Csharp;
+    public int D4;
+    public int Eflat;
+    public int E4;
+    public int F4;
+    public int FSharp;
+    public int G4;
+    public int GSharp;
+    public int A4;
+    public int BFlat;
+    public int B4;
     #endregion
 
     #region Private variables
@@ -112,7 +125,7 @@ public class AudioSpectrum : MonoBehaviour
     #endregion
 
     #region Public functions
-    public float BandVol(float fLow, float fHigh)
+    /*public float BandVol(float fLow, float fHigh)
     {
         fLow = Mathf.Clamp(fLow, 20, fMax);
         fHigh = Mathf.Clamp(fHigh, fLow, fMax);
@@ -126,6 +139,89 @@ public class AudioSpectrum : MonoBehaviour
             bandAcc += rawSpectrum[fi];
         }
         return bandAcc / (imax - imin +1);
+    }*/
+
+        public void NodeSpectrumIndex()
+    {
+        C4 = FrequencyToSpectrumIndex(261.6256f);
+        Csharp = FrequencyToSpectrumIndex(277.1826f);
+        D4 = FrequencyToSpectrumIndex(293.6648f);
+        Eflat = FrequencyToSpectrumIndex(311.1270f);
+        E4 = FrequencyToSpectrumIndex(329.6276f);
+        F4 = FrequencyToSpectrumIndex(349.2282f);
+        FSharp = FrequencyToSpectrumIndex(369.9944f);
+        G4 = FrequencyToSpectrumIndex(391.9954f);
+        GSharp = FrequencyToSpectrumIndex(415.3047f);
+        A4 = FrequencyToSpectrumIndex(440.0f);
+        BFlat = FrequencyToSpectrumIndex(466.1638f);
+        B4 = FrequencyToSpectrumIndex(493.8833f);
+    }
+
+    public string MaxNode() //determine the max node from its index
+    {
+        float maxNodeValue = 0;
+        string max = "";
+        if (C4 > maxNodeValue)
+        {
+            maxNodeValue = C4;
+            max = "C4";
+        }
+        if (Csharp > maxNodeValue)
+        {
+            maxNodeValue = Csharp;
+            max = "CSharp";
+        }
+        if (D4 > maxNodeValue)
+        {
+            maxNodeValue = D4;
+            max = "D4";
+        }
+        if (Eflat > maxNodeValue)
+        {
+            maxNodeValue = Eflat;
+            max = "Eflat";
+        }
+        if (E4 > maxNodeValue)
+        {
+            maxNodeValue = E4;
+            max = "E4";
+        }
+        if (F4 > maxNodeValue)
+        {
+            maxNodeValue = F4;
+            max = "F4";
+        }
+        if (FSharp > maxNodeValue)
+        {
+            maxNodeValue = FSharp;
+            max = "FSharp";
+        }
+        if (G4 > maxNodeValue)
+        {
+            maxNodeValue = G4;
+            max = "G4";
+        }
+        if (GSharp > maxNodeValue)
+        {
+            maxNodeValue = GSharp;
+            max = "GSharp";
+        }
+        if (A4 > maxNodeValue)
+        {
+            maxNodeValue = A4;
+            max = "A4";
+        }
+        if (BFlat > maxNodeValue)
+        {
+            maxNodeValue = BFlat;
+            max = "BFlat";
+        }
+        if (B4 > maxNodeValue)
+        {
+            maxNodeValue = B4;
+            max = "B4";
+        }
+        return max;
     }
     #endregion //PUBLIC_METHODS
 
@@ -134,6 +230,8 @@ public class AudioSpectrum : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         CheckBuffers ();
+
+        NodeSpectrumIndex();
     }
 
     void Update ()
@@ -167,6 +265,7 @@ public class AudioSpectrum : MonoBehaviour
             meanLevels[bi] = bandAcc - (levels[bi] - meanLevels[bi]) * filter;
         }
         GetAmplitude();
+
 
     }
     #endregion
