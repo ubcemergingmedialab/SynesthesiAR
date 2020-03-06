@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ParaCube : MonoBehaviour
 {
-    public AudioProcessor process;
+    public AudioSpectrum process = default;
 
     public int band;
     public float startScale, scaleMultiplier;
-    public bool useBuffer;
     Material mat;
 
     // Start is called before the first frame update
@@ -21,9 +20,10 @@ public class ParaCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float value = useBuffer ? process.audioBandBuffer[band] : process.audioBand[band];
+        float value = process.PeakLevels[band];
         transform.localScale = new Vector3(transform.localScale.x, (value * scaleMultiplier) + startScale, transform.localScale.z);
-        Color color = new Color(value, value, value);
+        float val = Mathf.Clamp(value, 0.0f, 0.2f);
+        Color color = new Color(val, val, val);
         mat.SetColor("_EmissionColor", color);
     }
 }
