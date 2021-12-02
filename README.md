@@ -31,7 +31,6 @@ A synesthesia simulator / music vizualizer for the hololens
 ## Team
 
 - Abel Waller
-- Shashwat Suri
 - Allen Chen
 
 ## Documentation
